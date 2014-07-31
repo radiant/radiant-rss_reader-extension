@@ -81,16 +81,16 @@ module RssReader
         end
       end
       if attr[:if_title_contains]
-        items = items.select { |item| item.title.downcase.include?(attr[:if_contains].downcase) }
+        items = items.select { |item| item.title.downcase.include?(attr[:if_title_contains].downcase) }
       end
       if attr[:unless_title_contains]
-        items = items.select { |item| ! item.title.downcase.include?(attr[:unless_contains].downcase) }
+        items = items.select { |item| ! item.title.downcase.include?(attr[:unless_title_contains].downcase) }
       end
       if attr[:if_content_contains]
-        items = items.select { |item| item.content.downcase.include?(attr[:if_contains].downcase) }
+        items = items.select { |item| item.content.downcase.include?(attr[:if_content_contains].downcase) }
       end
       if attr[:unless_content_contains]
-        items = items.select { |item| ! item.content.downcase.include?(attr[:unless_contains].downcase) }
+        items = items.select { |item| ! item.content.downcase.include?(attr[:unless_content_contains].downcase) }
       end
       if attr[:limit]
         items = items.slice(0,attr[:limit].to_i)
