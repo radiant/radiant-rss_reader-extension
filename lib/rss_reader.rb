@@ -55,10 +55,14 @@ module RssReader
     * @cache_time@: length of time to cache the feed before seeing if it's been updated
     * @order@:      works just like SQL 'ORDER BY' clauses, e.g. order='creator date desc' orders first by creator ascending, then date descending
     * @limit@:      only return the first x items (after any ordering)
+    * @if_title_contains@:  only return items whose title contains search term
+    * @unless_title_contains@:  only return items whose title does not contain search term
+    * @if_content_contains@:  only return items whose content contains search term
+    * @unless_content_contains@:  only return items whose content does not contain search term
     
     *Usage:*
 
-    <pre><code><r:find:items url="http://somefeed.com/rss" [cache_time="3600"] [order="creator date desc"] [limit="5"]>...</r:feed:items></code></pre>
+    <pre><code><r:find:items url="http://somefeed.com/rss" [cache_time="3600"] [order="creator date desc"] [limit="5"] [if_title_contains="include text"] [unless_title_contains="exclude text"]>...</r:feed:items></code></pre>
     }
     tag "feed:items" do |tag|
       attr = tag.attr.symbolize_keys
@@ -75,6 +79,18 @@ module RssReader
             items.sort! {|x,y| (tokens[i-1] == 'desc') ? (y.send(t) <=> x.send(t)) : (x.send(t) <=> y.send(t)) }
           end
         end
+      end
+      if attr[:if_title_contains]
+        items = items.select { |item| item.title.downcase.include?(attr[:if_contains].downcase) }
+      end
+      if attr[:unless_title_contains]
+        items = items.select { |item| ! item.title.downcase.include?(attr[:unless_contains].downcase) }
+      end
+      if attr[:if_content_contains]
+        items = items.select { |item| item.content.downcase.include?(attr[:if_contains].downcase) }
+      end
+      if attr[:unless_content_contains]
+        items = items.select { |item| ! item.content.downcase.include?(attr[:unless_contains].downcase) }
       end
       if attr[:limit]
         items = items.slice(0,attr[:limit].to_i)
