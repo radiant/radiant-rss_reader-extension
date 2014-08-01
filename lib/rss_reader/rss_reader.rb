@@ -3,7 +3,7 @@ require 'net/http'
 require 'net/https'
 require 'feedparser/feedparser'
 
-module RssReader
+module RssReader::RssReader
   include Radiant::Taggable
   
   def fetch_rss(uri, cache_time)
@@ -203,4 +203,3 @@ module RssReader
     end
 
 end
-  
