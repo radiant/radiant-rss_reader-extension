@@ -8,7 +8,7 @@ class RssReaderExtension < Radiant::Extension
   def activate
     cache_dir = ActionController::Base.page_cache_directory
     Dir.mkdir(cache_dir) unless File.exist?(cache_dir)
-    Page.send :include, RssReader::RssReader
+    Page.send :include, RssReader::PageExtensions
     Page.send :include, RssReader::Tags
   end
 end

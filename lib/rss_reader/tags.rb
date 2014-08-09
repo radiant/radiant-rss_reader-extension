@@ -20,7 +20,7 @@ module RssReader::Tags
     
     *Usage:*
 
-    <pre><code><r:find:items url="http://somefeed.com/rss" [cache_time="3600"] [order="creator date desc"] [limit="5"] [if_title_contains="include text"] [unless_title_contains="exclude text"]>...</r:feed:items></code></pre>
+    <pre><code><r:feed:items url="http://somefeed.com/rss" [cache_time="3600"] [order="creator date desc"] [limit="5"] [if_title_contains="include text"] [unless_title_contains="exclude text"] [if_content_contains="include text"] [unless_content_contains="exclude text"]>...</r:feed:items></code></pre>
     }
     tag "feed:items" do |tag|
       attr = tag.attr.symbolize_keys
