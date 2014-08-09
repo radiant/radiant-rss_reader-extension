@@ -62,7 +62,7 @@ You can sort items and group headers by date, title, content, creator, or link (
 * BJ Clark (bjclark@scidept.com, http://www.scidept.com/)
 * Loren Johnson (loren@fn-group.com, http://www.fn-group.com)
 
-#### Update to new Extension Architecture, Gemify:
+#### Update to new Extension Architecture, Gemify, Add Tests
 
 * Andrew vonderLuft (avonderluft@avlux.net, https://avlux.net)
 
